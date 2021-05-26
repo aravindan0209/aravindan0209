@@ -1,0 +1,170 @@
+Program to print a even numbers of the arrays:
+
+public class EvenArray {
+   public static void main(String args[]){
+      int[] myArray = {23, 93, 56, 92, 39};
+      System.out.println("Even numbers in the given array are:: ");
+
+      for (int i=0; i<myArray.length; i++){
+         if(myArray[i]%2 == 0){
+            System.out.println(myArray[i]);
+         }
+      }
+      >>>>>>>>>>X<<<<<<<<<<<<<<
+      
+      Find the maximum consecutive 1's in an array of 0's and 1's:
+
+      const arr = [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1];
+const maxConsecutive = (arr = []) => {
+   let left = 0;
+   let right = 0;
+   let max = 0;
+   while (right < arr.length) {
+      if (arr[right] === 0) {
+         if (right - left > max) {
+            max = right - left
+         };
+         right++;
+         left = right;
+      } else {
+         right++
+      };
+   };
+   return right - left > max ? right - left : max;
+}
+console.log(maxConsecutive(arr));
+
+>>>>>>>>>>X<<<<<<<<<<<<<<
+
+
+
+const yourArray = [1, 1, 2, 3, 4, 5, 5,7,7,7]
+
+const yourArrayWithoutDuplicates = [...new Set(yourArray)]
+
+let duplicates = [...yourArray]
+yourArrayWithoutDuplicates.forEach((item) => {
+  const i = duplicates.indexOf(item)
+  duplicates = duplicates
+    .slice(0, i)
+    .concat(duplicates.slice(i + 1, duplicates.length))
+})
+
+console.log(duplicates)
+
+>>>>>>>>>X<<<<<<<<<<<<<<
+
+API calling :
+
+First we have to add a http package in pubspec.yaml file
+
+import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+Future<Album> fetchAlbum() async {
+  final response =
+  await http.get(Uri.parse('http://www.example.com/api/get/1'));
+
+  if (response.statusCode == 200) {
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load books');
+  }
+}
+
+class Books {
+  final int userId;
+  final int id;
+  final String title;
+
+  Books({
+    final this.userId,
+    final this.id,
+    final this.title,
+  });
+
+  factory Books.fromJson(Map<String, dynamic> json) {
+    return Books(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+    );
+  }
+}
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  MyApp({key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+   Future<Album> futureAlbum;
+
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = fetchAlbum();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Sample',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('API Calling'),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: FutureBuilder<Books>(
+            future: futureBooks,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data.title,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),);
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+    
+>>>>>>>>>X<<<<<<<<<<<<<<
+
+
+
+
+  var obj = {
+   key1: 56,
+   key2: 67,
+   key3: 25,
+   key4: 10,
+   key5: 80
+};
+var sortObject = obj => {
+   var arr = Object.keys(obj).map(el => {
+      return obj[el];
+   });
+   arr.sort((a, b) => {
+      return a - b;
+   });
+   return arr;
+};
+console.log(sortObject(obj));
+
+output:
+[10,25,56,67,80]
